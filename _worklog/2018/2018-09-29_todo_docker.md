@@ -14,3 +14,5 @@ netstat -r
 route PRINT
 
 docker-for-windwos에서 docker-toolbox와 뭐가 달라서 localhost:8080접속이 되는지 매핑된거 확인
+
+https://www.digitalocean.com/community/tutorials/how-to-use-lvm-to-manage-storage-devices-on-ubuntu-16-04
