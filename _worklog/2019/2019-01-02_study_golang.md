@@ -4,14 +4,6 @@
 
 오버로딩 안됨. 함수 이름 다르게
 
-## keywords
-
-고 문버에서 볼 수 있음
-
-## reserved word
-
-내장함수 및 기타등등
-
 ## duck typing
 
 golang은 duck typing 사용
@@ -36,6 +28,28 @@ godoc image/png
 ## 포매팅 도구
 
 gofmt -h
+
+## go의 키워드
+
+keywords\
+https://golang.org/ref/spec#Keywords¶
+```
+break        default      func         interface    select
+case         defer        go           map          struct
+chan         else         goto         package      switch
+const        fallthrough  if           range        type
+continue     for          import       return       var
+```
+
+reserved words\
+:이 부분은 따로 정리된건 아니고 변수명이나 기타
+```
+append copy int8 nil true
+bool delete int16 panic uint
+byte error int32 print uint8
+cap false int64.......
+```
+
 
 ## 내장함수
 
