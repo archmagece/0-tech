@@ -325,3 +325,4 @@ func main(){
     display(&rect{3,4})
 }
 
+
