@@ -1,16 +1,17 @@
 # 소프트웨어 raid
 
-상태확인
-lsblk
+## 상태확인
+```bash
+$ lsblk
+$ lsblk -o NAME,SIZE,FSTYPE,TYPE,MOUNTPOINT
+```
+
+## raid 0 (stripe)
 
 cat /proc/mdstat
-
 mdadm --create --verbose /dev/md0 --level=0 --raid-devices=2 /dev/sda /dev/sdb
-
 cat /proc/mdstat
-
 sudo mdadm --detail --scan
-
 mkfs.ext4 /dev/md0
 
 
@@ -29,3 +30,6 @@ fstab에는
 /dev/md127 /datadir ext4 defaults 0 0
 
 대충됐으니 완료.
+
+## 참고
+https://www.digitalocean.com/community/tutorials/how-to-create-raid-arrays-with-mdadm-on-ubuntu-16-04#creating-a-raid-1-array
