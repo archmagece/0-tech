@@ -13,7 +13,17 @@ kdiff3
 gitkraken
 postman
 
+## terminal
 guake
+```
+xfce4-terminal --drop-down
+
+/usr/local/applications/xfce4-terminal.desktop
+Exec=xfce4-terminal --drop-down
+
+/usr/local/applications/xfce4-terminal-settings.desktop
+Name=Xfce Terminal Settings
+```
 
 ## drawing
 inkscape, gimp, pencil
@@ -54,4 +64,7 @@ tomboy note
 
 qgis, r, wxmaxima
 
+
+뭔지
+plank, compiz, bomi, slingscold, bleachbit, kazam, 4k vieto to mp3 ...
 

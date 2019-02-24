@@ -4,6 +4,10 @@ wiki.manjaro.org
 
 기본설치
 
+## pacman
+```
+$ sudo pacman -Syyu
+```
 
 ## ntp
 wiki/System_Time_Setting
@@ -23,6 +27,9 @@ $ timedatect set-ntp true
 
 ## 한글
 
+yaourt -S ttf-nanum noto-fonts-cjk
+pacman -S terminus-font noto-fonts-cjk ttf-dejavu
+
 ### ibus
 ~/.bashrc
 ```
@@ -31,3 +38,19 @@ export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 ```
 
+### fcitx
+
+
+### nimf
+
+yaourt -S nimf
+
+```
+export GTK_IM_MODULE="nimf"
+export QT4_IM_MODULE="nimf"
+export QT_IM_MODULE="nimf"
+export XMODIFIERS="@im=nimf"
+nimf
+```
+nimf-daemon
+nimf-indicator
