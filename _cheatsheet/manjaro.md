@@ -7,6 +7,9 @@ wiki.manjaro.org
 ## pacman
 ```
 $ sudo pacman -Syyu
+$ sudo pacman -Syup
+
+sudo pacman -Su --noconfirm
 ```
 
 ## ntp
@@ -54,3 +57,40 @@ nimf
 ```
 nimf-daemon
 nimf-indicator
+
+## packages
+
+(internet)
+chromium filezilla transmission-remote-gtk
+
+(editor)
+atom code kate
+
+(terminal)
+guake neovim xfce4-terminal
+
+(note)
+knotes gnote
+
+(file manager)
+krusader krename kdiff3 lha arj unarj unace
+nextcloud-client
+
+(keybodard)
+ibus-typing-booster 
+
+
+(calculator)
+wxmaxima
+
+(messenger)
+telegram-desktop
+
+(dev)
+wireshark-gtk nmap
+qgis r kitty virtualbox
+
+sudo pacman -S base-devel --needed
+
+yaourt synology-cloud-station-drive
+

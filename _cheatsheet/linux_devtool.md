@@ -25,6 +25,12 @@ Exec=xfce4-terminal --drop-down
 Name=Xfce Terminal Settings
 ```
 
+## language
+
+### ruby
+sudo apt-get install openssl
+rbenv
+
 ## drawing
 inkscape, gimp, pencil
 dia
