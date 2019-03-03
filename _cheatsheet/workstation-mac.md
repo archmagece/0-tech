@@ -1,4 +1,4 @@
-# Workstation Env for Mac
+# Workstation env for Mac
 
 ## package manager
 

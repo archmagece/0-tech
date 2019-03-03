@@ -1,0 +1,15 @@
+# Workstation env for Manjaro Linux
+
+https://archlinux.fr/man/yaourt.8.html
+
+
+## synology
+
+yaourt -Sy 
+https://aur.archlinux.org/packages/?K=synology&SB=p
+https://aur.archlinux.org/packages/synology-note-station/
+https://aur.archlinux.org/packages/synology-drive/
+
+
+https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/
+
