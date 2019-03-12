@@ -30,3 +30,29 @@ fond
 
 flag로 받기
 https://www.tldp.org/LDP/abs/html/internal.html#EX33
+
+
+
+for file in "$path"/*; do
+    [ -f "$file" ] || continue
+    mv "$file" "${file%.*}"
+done
+
+uname -s
+uname -a
+
+OS판별
+
+http://woowabros.github.io/tools/2017/08/17/ost_bash.html
+
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+echo ${machine}
+
+
