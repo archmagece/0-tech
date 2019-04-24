@@ -7,6 +7,59 @@ https://daybit.com/reward/btc-reward
 https://elixirschool.com/ko/
 https://elixirschool.com/ko/lessons/basics/basics/
 
+## directory structure
+https://pragdave.me/blog/2018/06/02/project-structure.html
+```
+Elixir
+my_app
+├── config
+├── lib
+├── mix.exs
+├── README.md
+└── test
+
+Ruby
+my_app/
+├── bin
+├── Gemfile
+├── lib
+├── my_app.gemspec
+├── Rakefile
+└── README.md
+
+NodeJS
+├── dist
+├── node_modules
+├── src
+├── gulpfile.js
+├── package.json
+└── README
+
+GO
+project-layout/
+├── api
+├── assets
+├── build
+├── cmd
+├── configs
+├── deployments
+├── docs
+├── examples
+├── githooks
+├── init
+├── internal
+├── LICENSE.md
+├── Makefile
+├── pkg
+├── README.md
+├── scripts
+├── test
+├── third_party
+├── tools
+├── vendor
+└── web
+```
+
 ## 특징
 안정성 뛰어남
 네트워크관련에는 좋음
