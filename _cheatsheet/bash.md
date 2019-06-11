@@ -74,3 +74,13 @@ bash file option - to 0-tech
 -u filename - Check if file set-user-id bit is set
 -w filename - Check if file is writable
 -x filename - Check if file is executable
+
+## directory list
+
+```bash
+for entry in "dir_name"/*
+do
+  echo $entry
+  echo $(basename "$entry")
+done
+```
