@@ -1,7 +1,7 @@
 Kubernetes
 ==========
 
-## Kube 활용법
+## Kube 설치 환경별 활용법
 AWS와 GCP, 로컬에서 설치가 조금씩 다를 수 있음
 
 ### GCP
@@ -54,3 +54,14 @@ kubectl describe deployment nginx-deployment
 
 이것도 뭔가 좀 애매한 면이 있다.
 바로 사용이 안된다. 돈걱정없으면 그리고 꼭 로컬에서 뭘 해야겠다는게 아니면 GCP에서 연습하는게 편하지 않을까
+
+
+## 설정 관리
+
+## 컨테이너 설정파일 관리 config map
+
+https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/
+
+## 환경변수 env variable
+
+https://kubernetes.io/ko/docs/tasks/inject-data-application/define-environment-variable-container
