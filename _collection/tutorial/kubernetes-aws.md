@@ -5,30 +5,30 @@ Kubernetes - AWS
 
 클러스터 생성에서 인증까지
 
-## 사전설치 항목
-### aws-cli
-필수설치
-### kubectl
-https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/install-kubectl.html
-### aws-iam-authenticator
-https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/install-aws-iam-authenticator.html
-### eksctl
-https://docs.aws.amazon.com/eks/latest/userguide/getting-started-eksctl.html
-선택아님. 필수설치
+## 사전설치 항목(필수)
 
-## AWS 설정
-https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/network_reqs.html
-https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/create-public-private-vpc.html
+* aws-cli (https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/install-kubectl.html)
+* aws-iam-authenticator (https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/install-aws-iam-authenticator.html)
+* eksctl (https://docs.aws.amazon.com/eks/latest/userguide/getting-started-eksctl.html)
+
+## 참고문서 종합
+
+* Amazon EKS (https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/what-is-eks.html)
+* Amazon Workshop (https://awskrug.github.io/eks-workshop/prerequisites/workspaceiam)
 
 ## Create Cluster
 
-### eksctl
+### web console
+웹콘솔로 뭐 되는게 없다. 노드그룹이랑 다 별도로 해줘야됨
+
+### eksctl 간편설치
 https://eksctl.io/usage/schema/
 
-대부분의 설정을 eksctl에 위임한 형태\
-잘 모르면 기본셋팅으로 이렇게 사용하는게 좋다\
-기존 vpc에 넣으려고 하면 nat게이트웨이 등 세부적인 설정을 해 줘야하는데\
+대부분의 설정을 eksctl에 위임한 형태 \
+잘 모르면 기본셋팅으로 이렇게 사용하는게 좋다 \
+기존 vpc에 넣으려고 하면 nat게이트웨이 등 세부적인 설정을 해 줘야하는데 \
 이 과정에서 오류가 발생해서 nodegroup과 master통신이 안되서 노드 인식을 못하는 문제가 발생하기도 한다.
+
 ```yaml
 # basic-cluster.yaml
 apiVersion: eksctl.io/v1alpha5
@@ -101,6 +101,7 @@ nodeGroups:
 
 ## 기 생성된 클러스테의 노드 관리
 https://eksctl.io/usage/managing-nodegroups/
+https://docs.aws.amazon.com/eks/latest/userguide/launch-workers.html
 
 시큐리티 그룹을 다 넣으면 오류가남. 웹콘솔에서는 잘 되는데
 웹콘솔에서 클러스터 생성하고 여기서는 노드그룹만 생성하는 것도
@@ -139,29 +140,52 @@ eksctl create nodegroup --config-file=<path> \
 노드그룹 드레인??
 `eksctl drain nodegroup --cluster=<clustername> --name=<ndoegroupname> --undo`
 
-### web console
-대강 이름 정하고 시큐리티그룹 넣어주고
-iam을 직접 생성해야한다.
-대강 eks 관련됨거 검색해서 다 넣어줬는데 세부적인건 확인필요
+### 세부수동설치
+자동설치시에 완료안된 부분 커스텀
+#### VPC
+https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/create-public-private-vpc.html
+
+#### SecurityGroup
+
+노드 생성시에 시큐리티 그룹설정
+```yaml
+nodeGroups:
+  - name: public-workers
+    privateNetworking: true
+    securityGroups:
+      - public:
+          inboundRules:
+            - type: All traffic
+              protocol: All
+              portRange: All
+              source: 12.34.56.0/24
+              description: Corporate hosts
+            - type: HTTP
+              protocol: TCP
+              portRange: 80
+              source: 34.56.78.0/24
+              description: Service users
+```
+
+#### Network Peering
+https://docs.aws.amazon.com/ko_kr/vpc/latest/peering/what-is-vpc-peering.html
+클러스터 생성시 VPC를 따로 생성한 경우 기존 VPC와 연결이 안되는데, peer를 통해 연결.
+
+#### Internet Router
+라우터에서 네트워크 오픈
+vpc설정 후 네트워크 연결이 안되는 경우
+
+#### 인증
 https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/security-iam.html
 
-VPC, Security Group 선택
-
-노드그룹 추가
-https://docs.aws.amazon.com/eks/latest/userguide/launch-workers.html
-https://eksctl.io/usage/managing-nodegroups/
-
-웹콘솔은 쓰지말자. 제대로 되지도 않음
-
-## 노드 생성 확인
-eksctl get nodegroup --cluster <cluster-name>
-
-## 인증
 https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/managing-auth.html
 aws-iam-authenticator 설치 후
 
 aws eks --region <region-name> update-kubeconfig --name <cluster-name>
 
+## 노드 생성 확인
+eksctl get nodegroup --cluster <cluster-name>
+
+## 보안
 내부 API 접근 허용.. 안해놓으면 노드인식안될수있음
 https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/cluster-endpoint.html
-aws eks --region region update-cluster-config --name dev --resources-vpc-config endpointPublicAccess=false,endpointPrivateAccess=true
