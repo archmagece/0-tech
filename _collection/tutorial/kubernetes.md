@@ -97,3 +97,9 @@ https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-read
 
 
 
+## 유용한 명령
+
+### 강제종료
+
+kubectl delete pod flink-taskmanager-111111-1111  --grace-period=0 --force -n flink
+
